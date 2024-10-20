@@ -7,7 +7,7 @@
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
-    "primaryColor": "#59F2C4",
+    "primaryColor": "#1C6650",
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "cover",

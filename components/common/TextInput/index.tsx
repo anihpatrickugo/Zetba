@@ -4,7 +4,7 @@ import { StyleSheet, TextInput, View, TextInputProps } from 'react-native'
 
 
 interface Props extends TextInputProps {
-    icon: JSX.Element
+    icon?: JSX.Element
 }
 
 const CustomTextInput: FC<Props> = ({icon, ...props}) => {
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     containner: {
         width: "100%", 
         height: 40, 
-        alignItems: "flex-end", 
+        alignItems: "center", 
         padding: 8, 
         gap: 8,  
         flexDirection: 'row',  

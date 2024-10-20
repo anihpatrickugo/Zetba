@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import { View,  Image, StyleSheet, TouchableOpacity} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useRouter } from 'expo-router';
@@ -37,7 +37,7 @@ const Onboarding = () => {
               <UI.CustomText color='white' size='3xl' style={{width: '80%'}}>Live, Enjoy and Connect with People</UI.CustomText>
                
               
-              <TouchableOpacity style={styles.button} onPress={()=>router.navigate('/signup')}>
+              <TouchableOpacity style={styles.button} onPress={()=>router.navigate('/login')}>
                   <View style={{flexDirection: "row", alignItems: "flex-end", gap: 4}}>
                      <UI.CustomText color='white' size='md'>Explore Now</UI.CustomText>
                      <MaterialIcons name="keyboard-double-arrow-right" size={24} color="white" />

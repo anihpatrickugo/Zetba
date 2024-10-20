@@ -47,7 +47,7 @@ const CustomText: FC<Props> = ({children, size, bold, color, style, ...props}) =
             variantStyles = {...variantStyles, fontWeight: null}
     }
 
- return  <Text style={[style, variantStyles]} {...props}>{children}</Text>
+ return  <Text style={[variantStyles, style]} {...props}>{children}</Text>
 
 }
 

@@ -4,6 +4,7 @@ import { Tabs } from "expo-router";
 import TicketIcon from "@/assets/icons/Ticket";
 import WalletIcon from "@/assets/icons/Wallet";
 import CalendarCheckIcon from "@/assets/icons/CalendarCheck";
+import MoreIcon from "@/assets/icons/More";
 import { grayColor, primaryColor } from "@/components/common/variables";
 import { View } from "react-native";
 
@@ -24,15 +25,19 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: primaryColor,
+        tabBarHideOnKeyboard: true,
         headerShown: false,
         tabBarStyle: {
           backgroundColor: grayColor,
           borderTopColor: grayColor,
+          paddingBottom: 10,
         },
       }}
+
+    
     >
       <Tabs.Screen
-        name="index"
+        name="(home)"
         options={{
           title: "Home",
           tabBarIcon: ({ color }) => <Feather name="home" size={24} color={color} />,
@@ -40,7 +45,7 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="ticket"
+        name="(ticket)"
         options={{
           title: "Ticket",
           tabBarIcon: ({ color }) => <TicketIcon color={color} />,
@@ -64,6 +69,14 @@ export default function TabLayout() {
         options={{
           title: "Event",
           tabBarIcon: ({ color }) => <CalendarCheckIcon color={color} />,
+        }}
+      />
+
+      <Tabs.Screen
+        name="(more)"
+        options={{
+          title: "More",
+          tabBarIcon: ({ color }) => <MoreIcon color={color} />,
         }}
       />
     </Tabs>

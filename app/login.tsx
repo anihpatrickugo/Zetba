@@ -48,7 +48,7 @@ export default function Login() {
         </View>
 
         <View style={{width: '100%',  justifyContent: 'space-between', alignItems: 'center', gap: 20}}>
-          <UI.Button variant="coloured" onPress={handleLogin} style={{width: '100%'}} text="Sign Up"/>
+          <UI.Button variant="coloured" onPress={()=>router.navigate("/OTPVerification")} style={{width: '100%'}} text="Sign Up"/>
 
           <UI.Button variant="light" onPress={handleLogin} style={{width: '100%'}} text="Connect Wallet"/>
         </View>

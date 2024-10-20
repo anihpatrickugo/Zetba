@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 
 interface Props extends TouchableOpacityProps {
     text: string,
-    variant: "coloured" | "light" | "light-gray",
+    variant: "coloured" | "light" | "dark",
     onPress: () => void;
     noBorder?:  boolean;
 }
@@ -28,11 +28,13 @@ const Button: FC<Props> = ({text, variant, onPress, noBorder, style, ...props}) 
             buttonText: {color: 'white' }}
         break;
 
-    case "light-gray":
+     case "dark":
         variantStyles =  { 
-            button: {backgroundColor: "transparent",  borderWidth: 1, borderColor: grayColor},  
-            buttonText: {color: '#344054', fontWeight: '700' }}
+            button: { colors: [grayColor, grayColor],  borderWidth: noBorder ? 0 : 1, borderColor: 'white'},  
+            buttonText: {color: 'white' }}
         break;
+
+   
 
     default: 
         variantStyles =  {button: {backgroundColor: primaryColor},  buttonText: {color: "white" }}
