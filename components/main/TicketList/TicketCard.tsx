@@ -1,13 +1,13 @@
 import React from 'react'
 import { Image, TouchableOpacity, StyleSheet, View} from 'react-native'
 import * as UI from '@/components/common/index'
-import { lightGrayColor, primaryColor } from "@/components/common/variables";
+import { lightGrayColor, lightWhiteColor, primaryColor } from "@/components/common/variables";
 import { EvilIcons, Feather } from '@expo/vector-icons';
 import { router } from 'expo-router';
 
 const TicketCard = () => {
   return (
-    <TouchableOpacity style={styles.ticket} onPress={()=>router.navigate("/(auth)(tabs)(ticket)[ticket-id]")}>
+    <TouchableOpacity style={styles.ticket} onPress={()=>router.navigate({pathname: "/(ticket)/detail/[id]", params: {id: 1}})}>
     <Image 
     source={require("@/assets/images/dynamic/concert.png")} 
     style={{width: 63, height: 63, borderRadius: 4}} resizeMode="cover"/>
@@ -39,7 +39,7 @@ const TicketCard = () => {
 const styles = StyleSheet.create({
     ticket: {
         width: "100%",
-        backgroundColor: 'rgba(89, 242, 196, 0.05)',
+        backgroundColor: lightWhiteColor,
         gap: 8,
         paddingVertical: 17,
         paddingHorizontal: 13,

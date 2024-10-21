@@ -8,4 +8,5 @@ export const info = '#999999';
 export const danger = '#E73030';
 export const grayColor = '#212121';
 export const lightGrayColor = '#BEBEBE';
+export const lightWhiteColor = '#FFFFFF0D';
 

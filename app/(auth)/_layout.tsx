@@ -29,6 +29,14 @@ export default function AppLayout() {
     <Stack screenOptions={{headerShown: false}}>
       <Stack.Screen name="(tabs)" />
       <Stack.Screen name="notifications" />
+      <Stack.Screen
+        name="photoModal"
+        options={{
+          presentation: 'containedTransparentModal',
+          animation: 'slide_from_bottom'
+        }}
+        
+      />
     </Stack>
   )
 }

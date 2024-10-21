@@ -1,19 +1,26 @@
 import { useState } from "react";
-import {  View,  ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import {  View,  ScrollView, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import * as UI from '@/components/common';
 import {Feather} from '@expo/vector-icons';
 import QRCode from 'react-native-qrcode-svg';
 import { lightGrayColor, primaryColor, primaryLightColor } from "@/components/common/variables";
+import {Clipboard} from 'react-native';
 
 
-export default function password() {
+export default function Wallet() {
 
   const navigation = useNavigation();
   const [showBalance, setShowBalance] = useState(false);
 
-  
 
+  const copyToClipboard = () => {
+    Clipboard.setString('hello world');
+    Alert.alert("Copied")
+  };
+
+
+  
   return (
       <UI.Containner noGradient>
       
@@ -66,7 +73,7 @@ export default function password() {
                 Your wallet id is: 3rtgyte5...ftdsr  
              </UI.CustomText>
 
-             <TouchableOpacity>
+             <TouchableOpacity onPress={()=>copyToClipboard()}>
                 <Feather name="copy" size={14} color={primaryColor}/>
               </TouchableOpacity>
 

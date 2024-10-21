@@ -1,8 +1,10 @@
-import {  View, StyleSheet, KeyboardAvoidingView, Image } from "react-native";
+import {  View, StyleSheet, KeyboardAvoidingView, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import * as UI from '@/components/common';
 import SquareUserIcon from '@/assets/icons/SquareUser';
 import {Feather, EvilIcons} from '@expo/vector-icons';
+import { router } from "expo-router";
+
 
 
 export default function profile() {
@@ -26,9 +28,9 @@ export default function profile() {
 
 
        {/* form */}
-        <View>
+        <TouchableOpacity onPress={()=>router.navigate("/photoModal")}>
           <Image source={require("@/assets/images/dynamic/pro.jpeg")} style={styles.profileImage}/>
-        </View>
+        </TouchableOpacity>
 
          <UI.CustomTextInput 
              placeholder="Name" 

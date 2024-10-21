@@ -8,9 +8,10 @@ interface Props extends TouchableOpacityProps {
     variant: "coloured" | "light" | "dark",
     onPress: () => void;
     noBorder?:  boolean;
+    icon?: JSX.Element 
 }
 
-const Button: FC<Props> = ({text, variant, onPress, noBorder, style, ...props}) => {
+const Button: FC<Props> = ({text, variant, icon, onPress, noBorder, style, ...props}) => {
    let variantStyles = {button: null, buttonText: null}
 
 
@@ -46,7 +47,10 @@ const Button: FC<Props> = ({text, variant, onPress, noBorder, style, ...props}) 
         <LinearGradient 
         colors={variantStyles?.button?.colors}
         style={[style, styles.button, variantStyles.button]} {...props}>
-            <Text style={[styles.buttonText, variantStyles.buttonText]}>{text}</Text>
+            
+            <Text style={[styles.buttonText, variantStyles.buttonText]}> 
+                {icon && (icon)} {text}
+            </Text>
         </LinearGradient>
     </TouchableOpacity>
   )
