@@ -65,7 +65,7 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="event"
+        name="(event)"
         options={{
           title: "Event",
           tabBarIcon: ({ color }) => <CalendarCheckIcon color={color} />,

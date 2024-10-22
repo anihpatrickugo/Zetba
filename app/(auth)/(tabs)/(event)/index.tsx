@@ -1,12 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import * as UI from "@/components/common/index"
 
 const Event: React.FC = () => {
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Event Title</Text>
-            <Text style={styles.description}>Event Description</Text>
-        </View>
+        <UI.Containner>
+           <Text style={styles.title}>All Events</Text>
+           <Text style={styles.description}>Event Description</Text>
+        </UI.Containner>
+        
     );
 };
 
@@ -20,7 +22,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        marginBottom: 8,
+        marginTop: 80,
     },
     description: {
         fontSize: 16,

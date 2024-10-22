@@ -93,10 +93,7 @@ export default function notifications() {
             <View style={{backgroundColor: 'white', padding: 12, marginVertical: 12}}>
                 <QRCode
                     value="http://awesome.link.qr"
-                     size={150} 
-                     logo={require("@/assets/images/icon.png")}
-                     logoSize={50}
-                     logoBackgroundColor='transparent'
+                     size={150}
                     />
             </View>
 
