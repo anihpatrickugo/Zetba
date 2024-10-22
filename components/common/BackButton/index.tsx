@@ -1,5 +1,5 @@
 import React from 'react'
-import { Pressable, StyleSheet, Text} from 'react-native'
+import { Pressable, StyleSheet} from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 

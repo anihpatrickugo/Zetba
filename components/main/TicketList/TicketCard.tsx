@@ -1,13 +1,24 @@
-import React from 'react'
+import React, {FC} from 'react'
 import { Image, TouchableOpacity, StyleSheet, View} from 'react-native'
 import * as UI from '@/components/common/index'
 import { lightGrayColor, lightWhiteColor, primaryColor } from "@/components/common/variables";
-import { EvilIcons, Feather } from '@expo/vector-icons';
+import { EvilIcons, Feather, AntDesign } from '@expo/vector-icons';
 import { router } from 'expo-router';
 
-const TicketCard = () => {
+type Props = {
+  obj: number
+  pathRoute: any,
+  deleteIcon?: boolean
+}
+
+const TicketCard: FC<Props> = ({obj, pathRoute, deleteIcon}) => {
+
+   
+  const onDelete = () => {
+    router.navigate({pathname: "/(event)/deleteEventModal", params: {id: obj}})
+  }
   return (
-    <TouchableOpacity style={styles.ticket} onPress={()=>router.navigate({pathname: "/(ticket)/detail/[id]", params: {id: 1}})}>
+    <TouchableOpacity style={styles.ticket} onPress={()=>router.navigate({pathname: pathRoute, params: {id: obj}})}>
     <Image 
     source={require("@/assets/images/dynamic/concert.png")} 
     style={{width: 63, height: 63, borderRadius: 4}} resizeMode="cover"/>
@@ -29,8 +40,14 @@ const TicketCard = () => {
 
     </View>
 
+     { deleteIcon ? (
+         <TouchableOpacity style={styles.deleteIcon} onPress={onDelete}>
+           <AntDesign name="delete" size={14} color="red" />
+         </TouchableOpacity>
+     ) : (
 
-   <Feather name="arrow-right" size={24} color={primaryColor} />
+       <Feather name="arrow-right" size={24} color={primaryColor} />
+     )}
 </TouchableOpacity>
   )
 }
@@ -51,10 +68,20 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center"
     },
+
     detail:{
         flex: 1,
         gap: 4
 
+    },
+
+    deleteIcon: { 
+        width: 28, 
+        height: 28, 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        backgroundColor: 'white', 
+        borderRadius: 3
     }
 })
 

@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
      backgroundColor: "transparent", 
      zIndex: 5, 
      position: 'absolute', 
-     top: 20, 
+     top: 65, 
      left: 20,
      right: 20
      },

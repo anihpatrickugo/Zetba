@@ -1,16 +1,21 @@
 
-import React from 'react'
+import React, {FC} from 'react'
 import { FlatList } from 'react-native'
 import TicketCard from './TicketCard'
 
-const TicketList = () => {
+type Props = {
+  pathRoute: string
+  deleteIcon? : boolean
+}
+
+const TicketList: FC<Props> = ({pathRoute, deleteIcon}) => {
   return (
     <FlatList
     style={{ marginTop: 20, flex: 1}}
     contentContainerStyle={{width: '100%', gap: 15}}
-    data={[1 ]}
+    data={[1,2,3,4,5,6,7,8,9,10 ]}
     showsVerticalScrollIndicator={false}
-    renderItem={()=>(<TicketCard/>)}
+    renderItem={(obj )=> (<TicketCard  obj={obj.item} pathRoute={pathRoute} deleteIcon={deleteIcon} />)}
 
   />
   )

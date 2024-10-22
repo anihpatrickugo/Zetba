@@ -15,7 +15,7 @@ const More = () => {
     
     return (
         <UI.Containner>
-            <UI.CustomText size="sm" color="white" style={{fontSize: 16}}>More</UI.CustomText>
+            <UI.CustomText size="sm" color="white">More</UI.CustomText>
             
             {/* links */}
             <View style={{ width: "100%", gap: 8, marginVertical: 32}}>

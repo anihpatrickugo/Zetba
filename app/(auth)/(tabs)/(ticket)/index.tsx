@@ -25,9 +25,7 @@ export default function MyTickets() {
 
 
       {/* ticket list */}
-      <TicketList/>
-       
-
+      <TicketList pathRoute="/(ticket)/detail/[id]" />
 
     </UI.Containner>
   );
