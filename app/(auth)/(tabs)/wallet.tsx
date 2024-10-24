@@ -58,6 +58,18 @@ export default function Wallet() {
 
        </View>
 
+        
+        {/* buttons */}
+       <View style={styles.buttons}>
+          <View style={{width: 140}}>
+            <UI.Button text="send" variant="coloured" icon={<Feather name="arrow-up-right" size={20} color="white" />}/>
+          </View>
+
+          <View style={{width: 140}}>
+            <UI.Button text="Receive" variant="coloured" icon={<Feather name="arrow-down-left" size={20} color="white" />}/>
+          </View>
+       </View>
+
        {/* wallet address */}
        <View style={styles.walletAddressContainner}>
          <View style={{backgroundColor: 'white', padding: 12}}>
@@ -103,6 +115,12 @@ const styles = StyleSheet.create({
       borderRadius: 10,
       gap: 10,
       marginVertical: 20
+    },
+
+    buttons: {
+      width: "100%",
+      flexDirection: "row",
+      justifyContent: "space-between"
     },
  
     walletAddressContainner: {

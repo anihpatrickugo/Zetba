@@ -56,11 +56,11 @@ export default function TabLayout() {
         name="wallet"
         options={{
           title: "Wallet",
-          tabBarIcon: ({ color }) => (<View style={{width: 24, height: 24, 
+          tabBarIcon: ({ color, focused }) => (<View style={{width: 24, height: 24, 
             backgroundColor: color, borderRadius: 12,
             justifyContent: 'center', alignItems: 'center'
           }}>
-            <WalletIcon color={color} width={13} height={13}/></View>),
+            <WalletIcon color='black' width={13} height={13}/></View>),
         }}
       />
 

@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { StyleSheet, TextInput, View, TextInputProps } from 'react-native'
+import { primaryLightColor } from "@/components/common/variables";
 
 
 
@@ -12,7 +13,7 @@ const CustomTextInput: FC<Props> = ({icon, ...props}) => {
 
  return <View style={styles.containner}>
          {icon}
-       <TextInput  placeholderTextColor='white' style={styles.inputField} {...props}/>
+       <TextInput  placeholderTextColor={primaryLightColor} style={styles.inputField} {...props}/>
  </View> 
 
 }

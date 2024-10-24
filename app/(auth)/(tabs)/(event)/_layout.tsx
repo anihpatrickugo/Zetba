@@ -13,6 +13,8 @@ export default function Layout() {
       <Stack.Screen name="(top-tabs)" options={{ header: ()=> <Header /> }}/>
       <Stack.Screen name="newEvent" options={{headerShown: false}}/>
       <Stack.Screen name="detail/[id]" options={{headerShown: false}}/>
+      <Stack.Screen name="detail/buyTicket/[id]" options={{headerShown: false}}/>
+      <Stack.Screen name="detail/buyTicket/success" options={{headerShown: false}}/>
       <Stack.Screen name="deleteEventModal"  options={{
         headerShown: false, 
         presentation: 'containedTransparentModal',

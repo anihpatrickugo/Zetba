@@ -34,14 +34,26 @@ export default function notifications() {
        {/* ticket */}
        <ScrollView style={{width: '100%', flex: 1}} showsVerticalScrollIndicator={false}>
          <View style={styles.ticket}>
-          <Image source={require("@/assets/images/dynamic/concert.png")} 
+
+            <View style={{width: "100%", flexDirection: "row", gap: 8}}>
+
+              <Image source={require("@/assets/images/dynamic/concert.png")} 
                  borderRadius={15} 
-                 resizeMode='stretch' 
-                 style={{ width: "100%", height: 125, marginVertical: 12}}
-            />
+                 resizeMode='cover'
+                 style={{ width: 86, height: 82, borderRadius: 8}}
+                  />
+
+                <View style={{justifyContent: "space-evenly"}}>
+                  <UI.CustomText size='xs' color={lightGrayColor} bold>Podcast</UI.CustomText>
+                  <UI.CustomText size='sm' color='white' bold>Barbados Music Festival</UI.CustomText>
+                  <UI.CustomText size='sm' color={lightGrayColor} bold>Youtube</UI.CustomText>
+                </View>
+
+            
+            </View>
 
 
-            <UI.CustomText size='md' color='white' bold>Barbados Music Festival</UI.CustomText>
+           
 
             <View style={{width: "100%", height: 0.5, backgroundColor: lightGrayColor, marginVertical: 20}}/>
 
@@ -90,7 +102,7 @@ export default function notifications() {
             {/* qrcode */}
             <UI.CustomText size='sm' color='white'>Scan QRcode</UI.CustomText>
 
-            <View style={{backgroundColor: 'white', padding: 12, marginVertical: 12}}>
+            <View style={{backgroundColor: 'white', padding: 4, marginVertical: 12}}>
                 <QRCode
                     value="http://awesome.link.qr"
                      size={150}

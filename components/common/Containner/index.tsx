@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
         padding: 20,
         paddingTop: 40,
         backgroundColor: grayColor,
-        position: 'absolute',
     }
 })
 

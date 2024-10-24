@@ -5,7 +5,7 @@ import { useRouter } from 'expo-router';
 
 interface Props {
     navigation: any,
-    screenName: string
+    screenName?: string
 }
 
 const BackButton: React.FC<Props> = () => {

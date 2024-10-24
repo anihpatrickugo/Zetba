@@ -30,7 +30,7 @@ const EventList: FC<EventListProps> = ({title, seeMore, data}) => {
         style={{ width: "100%"}}
         contentContainerStyle={{gap: 16}}
         renderItem={({item}) => (
-         <EventCard/>
+         <EventCard key={item}/>
         )}
       />
 

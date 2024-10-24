@@ -8,10 +8,11 @@ interface Props extends TouchableOpacityProps {
     variant: "coloured" | "light" | "dark" | "danger" | "cancel",
     onPress: () => void;
     noBorder?:  boolean;
-    icon?: JSX.Element 
+    icon?: JSX.Element ;
+    transverse?: boolean
 }
 
-const Button: FC<Props> = ({text, variant, icon, onPress, noBorder, style, ...props}) => {
+const Button: FC<Props> = ({text, variant, icon, onPress, transverse, noBorder, style, ...props}) => {
    let variantStyles = {button: null, buttonText: null}
 
 
