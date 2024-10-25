@@ -10,6 +10,7 @@ type EventListProps = {
     seeMore: () => void;
     data: any;
 }
+
 const EventList: FC<EventListProps> = ({title, seeMore, data}) => {
   return (
     <View style={{width: "100%"}}>

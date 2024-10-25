@@ -5,19 +5,23 @@ import { primaryColor, grayColor } from "@/components/common/variables";
 import {EvilIcons, AntDesign} from '@expo/vector-icons';
 import { router } from 'expo-router';
 
-const EventCard = () => {
+
+
+const VerticalEventCard = () => {
+
+
   return (
     <Pressable onPress={() => router.push({pathname: "/(event)/detail/[id]", params: {id: 1}})} style={{marginVertical: 8, alignItems: "center",
-        justifyContent: "space-between", width: 255, height: 296, borderRadius: 10}}>
+        justifyContent: "space-between", width: 285, height: 184 }}>
 
-         <View style={{justifyContent: "center", alignItems: "center", width: 44, height: 46, borderRadius: 4, backgroundColor: primaryColor, position: "absolute", top: 14, right: 20, zIndex: 10}}>
-             <UI.CustomText size="md" bold>15</UI.CustomText>
+         <View style={{justifyContent: "center", alignItems: "center", width: 35, height: 37, borderRadius: 4, backgroundColor: primaryColor, position: "absolute", top: 14, right: 20, zIndex: 10}}>
+             <UI.CustomText size="sm" bold>15</UI.CustomText>
              <UI.CustomText size="xs" >Aug</UI.CustomText>
          </View>
          
-           <Image source={require("@/assets/images/dynamic/concert.png")} style={{width: "100%", height: "100%"}} resizeMode="cover"/>
+           <Image source={require("@/assets/images/dynamic/concert2.png")} style={{width: "100%", height: "100%", borderRadius: 8 }} resizeMode="cover"/>
            
-         <View style={{ width: "85%", backgroundColor: grayColor, opacity: 0.6, padding: 12,  borderRadius: 10,  position: "absolute", zIndex: 10, bottom: 20, right: 20,  }}>
+         <View style={{ width: "87%", backgroundColor: grayColor, opacity: 0.6, padding: 6,  borderRadius: 10,  position: "absolute", zIndex: 10, bottom: 20, right: 20,  }}>
             <UI.CustomText size="xs" color="white" bold >Barbados Music Festival </UI.CustomText>
 
             <View style={{ flexDirection: "row", gap: 2, alignItems: 'center'}}>
@@ -48,4 +52,4 @@ const EventCard = () => {
   )
 }
 
-export default EventCard
+export default VerticalEventCard

@@ -69,10 +69,10 @@ export default function TabOneScreen() {
 
         
         {/* upcoming events */}
-        <EventList title="Upcoming Events" seeMore={()=>{}} data={[1,2,3,4,5]}/>
+        <EventList title="Upcoming Events" seeMore={()=>router.navigate("/(event)/upcomingEvents")} data={[1,2,3,4,5]}/>
 
         {/* popular events */}
-        <EventList title="Popular Events" seeMore={()=>{}} data={[1,2,3,4,5]}/>
+        <EventList title="Popular Events" seeMore={()=>router.navigate("/(event)/popularEvents")} data={[1,2,3,4,5]}/>
 
         </ScrollView>
  

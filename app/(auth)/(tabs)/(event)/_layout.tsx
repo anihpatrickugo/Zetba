@@ -12,6 +12,8 @@ export default function Layout() {
     <Stack>
       <Stack.Screen name="(top-tabs)" options={{ header: ()=> <Header /> }}/>
       <Stack.Screen name="newEvent" options={{headerShown: false}}/>
+      <Stack.Screen name="upcomingEvents" options={{headerShown: false}}/>
+      <Stack.Screen name="popularEvents" options={{headerShown: false}}/>
       <Stack.Screen name="detail/[id]" options={{headerShown: false}}/>
       <Stack.Screen name="detail/buyTicket/[id]" options={{headerShown: false}}/>
       <Stack.Screen name="detail/buyTicket/success" options={{headerShown: false}}/>
