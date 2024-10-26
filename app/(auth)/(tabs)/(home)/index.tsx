@@ -7,6 +7,7 @@ import { danger, lightGrayColor, primaryColor } from "@/components/common/variab
 import { TouchableOpacity } from "react-native";
 import CategoryList from "@/components/main/CategoryList";
 import EventList from "@/components/main/EventList";
+import SmallVerticalEventList from "@/components/main/EventList/SmallVerticalEventList";
 import { router } from "expo-router";
 
 
@@ -38,9 +39,11 @@ export default function TabOneScreen() {
       </View>
 
 
+
+      <ScrollView showsVerticalScrollIndicator={false} style={{width: "100%", flex: 1}}>
       
        {/* tittle */}
-      <View style={{width: "100%", marginVertical: 16}}>
+      <View style={{width: "100%", marginVertical: 12}}>
          <UI.CustomText size="lg" color="white" bold>Explore Events</UI.CustomText>
       </View>
 
@@ -63,16 +66,17 @@ export default function TabOneScreen() {
 
 
       {/* categories */}
+      <View style={{width: '100%'}}>
       <CategoryList/>
+      </View>
 
-      <ScrollView showsVerticalScrollIndicator={false} style={{width: "100%", flex: 1}}>
 
         
         {/* upcoming events */}
         <EventList title="Upcoming Events" seeMore={()=>router.navigate("/(event)/upcomingEvents")} data={[1,2,3,4,5]}/>
 
         {/* popular events */}
-        <EventList title="Popular Events" seeMore={()=>router.navigate("/(event)/popularEvents")} data={[1,2,3,4,5]}/>
+        <SmallVerticalEventList title="Popular Events" seeMore={()=>router.navigate("/(event)/popularEvents")} data={[1,2,3,4,5]}/>
 
         </ScrollView>
  
@@ -85,6 +89,7 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     alignItems: "center",
+    marginVertical: 16
 
   },
 

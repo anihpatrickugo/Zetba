@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import * as UI from "@/components/common/index"
+import * as UI from "@/components/common/index";
 import TicketList from '@/components/main/TicketList';
 
 const Event: React.FC = () => {
