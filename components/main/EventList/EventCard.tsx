@@ -3,11 +3,12 @@ import { View, Image, Pressable, TouchableOpacity } from 'react-native'
 import * as UI from "@/components/common";
 import { primaryColor, grayColor } from "@/components/common/variables";
 import {EvilIcons, AntDesign} from '@expo/vector-icons';
-import { router } from 'expo-router';
+import { useNavigation } from 'expo-router';
 
 const EventCard = () => {
+  const navigation = useNavigation()
   return (
-    <Pressable onPress={() => router.push({pathname: "/(event)/detail/[id]", params: {id: 1}})} style={{marginVertical: 8, alignItems: "center",
+    <Pressable onPress={() =>  navigation.navigate("event-detail/[id]")} style={{marginVertical: 8, alignItems: "center",
         justifyContent: "space-between", width: 255, height: 296, borderRadius: 10}}>
 
          <View style={{justifyContent: "center", alignItems: "center", width: 44, height: 46, borderRadius: 4, backgroundColor: primaryColor, position: "absolute", top: 14, right: 20, zIndex: 10}}>

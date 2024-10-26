@@ -3,15 +3,16 @@ import { View, Image, Pressable, TouchableOpacity } from 'react-native'
 import * as UI from "@/components/common";
 import { primaryColor, grayColor } from "@/components/common/variables";
 import {EvilIcons, AntDesign} from '@expo/vector-icons';
-import { router } from 'expo-router';
+import { useNavigation } from 'expo-router';
 
 
 
 const VerticalEventCard = () => {
-
+ 
+   const navigation = useNavigation()
 
   return (
-    <Pressable onPress={() => router.push({pathname: "/(event)/detail/[id]", params: {id: 1}})} style={{marginVertical: 8, alignItems: "center",
+    <Pressable onPress={() => navigation.navigate("event-detail/[id]", {id: 1})} style={{marginVertical: 8, alignItems: "center",
         justifyContent: "space-between", width: 285, height: 184 }}>
 
          <View style={{justifyContent: "center", alignItems: "center", width: 35, height: 37, borderRadius: 4, backgroundColor: primaryColor, position: "absolute", top: 14, right: 20, zIndex: 10}}>

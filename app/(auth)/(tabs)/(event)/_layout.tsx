@@ -11,16 +11,8 @@ export default function Layout() {
   return (
     <Stack>
       <Stack.Screen name="(top-tabs)" options={{ header: ()=> <Header /> }}/>
-      <Stack.Screen name="newEvent" options={{headerShown: false}}/>
       <Stack.Screen name="upcomingEvents" options={{headerShown: false}}/>
       <Stack.Screen name="popularEvents" options={{headerShown: false}}/>
-      <Stack.Screen name="detail/[id]" options={{headerShown: false}}/>
-      <Stack.Screen name="detail/buyTicket/[id]" options={{headerShown: false}}/>
-      <Stack.Screen name="detail/buyTicket/success" options={{headerShown: false}}/>
-      <Stack.Screen name="deleteEventModal"  options={{
-        headerShown: false, 
-        presentation: 'containedTransparentModal',
-        animation: 'slide_from_bottom'}}/>
 
         
     </Stack>
@@ -39,7 +31,7 @@ const Header = () => {
       <UI.CustomText size="sm" color="white">Event</UI.CustomText>
     </View>
 
-    <TouchableOpacity  style={styles.addButton} onPress={()=> router.navigate("/newEvent")}>
+    <TouchableOpacity  style={styles.addButton} onPress={()=> router.navigate("event-detail/newEvent")}>
        <Ionicons name="add-circle-outline" size={24} color="black" />
    </TouchableOpacity>
 </View>

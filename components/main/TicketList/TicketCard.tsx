@@ -15,7 +15,7 @@ const TicketCard: FC<Props> = ({obj, pathRoute, deleteIcon}) => {
 
    
   const onDelete = () => {
-    router.navigate({pathname: "/(event)/deleteEventModal", params: {id: obj}})
+    router.navigate({pathname: "event-detail/deleteEventModal", params: {id: obj}})
   }
   return (
     <TouchableOpacity style={styles.ticket} onPress={()=>router.navigate({pathname: pathRoute, params: {id: obj}})}>

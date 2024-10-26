@@ -1,6 +1,5 @@
 import {  View, StyleSheet, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { router } from "expo-router";
 import * as UI from '@/components/common';
 import DollarIcon from '@/assets/icons/DollarCircle';
 import WalletIcon from '@/assets/icons/Wallet';
@@ -96,7 +95,7 @@ export default function NewEvent() {
        </View>
 
 
-       <UI.Button variant="coloured" text="Buy Now" onPress={()=>{router.navigate("detail/buyTicket/success")}} style={{ alignSelf: "flex-end"}}/>
+       <UI.Button variant="coloured" text="Buy Now" onPress={()=>{navigation.navigate("event-detail/buyTicket/success")}} style={{ alignSelf: "flex-end"}}/>
 
 
       

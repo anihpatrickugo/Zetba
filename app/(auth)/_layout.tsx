@@ -29,6 +29,15 @@ export default function AppLayout() {
     <Stack screenOptions={{headerShown: false}}>
       <Stack.Screen name="(tabs)" />
       <Stack.Screen name="notifications" />
+      <Stack.Screen name="ticket-detail/[id]" options={{headerShown: false}}/>
+      <Stack.Screen name="event-detail/newEvent" options={{headerShown: false}}/>
+      <Stack.Screen name="event-detail/[id]" options={{headerShown: false}}/>
+      <Stack.Screen name="event-detail/buyTicket/[id]" options={{headerShown: false}}/>
+      <Stack.Screen name="event-detail/buyTicket/success" options={{headerShown: false}}/>
+      <Stack.Screen name="event-detail/deleteEventModal"  options={{
+        headerShown: false, 
+        presentation: 'containedTransparentModal',
+        animation: 'slide_from_bottom'}}/>
       <Stack.Screen
         name="photoModal"
         options={{

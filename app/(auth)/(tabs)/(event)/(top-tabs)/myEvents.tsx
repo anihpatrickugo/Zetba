@@ -7,7 +7,7 @@ const Event: React.FC = () => {
     return (
         <UI.Containner>
             <View style={{ marginTop: 80}}>
-               <TicketList pathRoute="/(event)/detail/[id]" deleteIcon />
+               <TicketList pathRoute="event-detail/[id]" deleteIcon />
             </View>
         </UI.Containner>
     );

@@ -156,7 +156,7 @@ export default function notifications() {
        </View> 
          {/*  button */}
 
-         <UI.Button text='Buy Ticket' variant='coloured' onPress={()=>navigation.navigate("detail/buyTicket/[id]")}/>
+         <UI.Button text='Buy Ticket' variant='coloured' onPress={()=>navigation.navigate("event-detail/buyTicket/[id]")}/>
        </UI.Containner> 
     </ScrollView>
   );
