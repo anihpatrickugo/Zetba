@@ -75,14 +75,13 @@ export default function TabOneScreen() {
         
         {/* upcoming events */}
         <View style={{width: "100%"}}>
-          <UpcomingEventList seeMore={()=>router.navigate("/(event)/upcomingEvents")} events={[1,2,3,4,5]}/>
+          <UpcomingEventList events={[1,2,3,4,5]}/>
         </View>
 
 
         {/* popular events */}
         <View style={{width: "100%"}}> 
-
-        <PopularEventList seeMore={()=>router.navigate("/(event)/popularEvents")} events={[1,2,3,4,5]}/>
+           <PopularEventList />
         </View>
 
         </ScrollView>

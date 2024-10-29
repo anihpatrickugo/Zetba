@@ -10,11 +10,7 @@ import { router } from 'expo-router';
 export default function Layout() {
   return (
     <Stack>
-      <Stack.Screen name="(top-tabs)" options={{ header: ()=> <Header /> }}/>
-      <Stack.Screen name="upcomingEvents" options={{headerShown: false}}/>
-      <Stack.Screen name="popularEvents" options={{headerShown: false}}/>
-
-        
+      <Stack.Screen name="(top-tabs)" options={{ header: ()=> <Header /> }}/>    
     </Stack>
   );
 }

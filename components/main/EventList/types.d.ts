@@ -7,11 +7,6 @@ export interface Event {
     attendees: number;
 }
 
-export interface EventList {
-    events:  number[];
-    seeMore?: () => void;
-}
-
 export interface AddEventAction {
     type: 'ADD_EVENT';
     payload: Event;

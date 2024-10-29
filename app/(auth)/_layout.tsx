@@ -34,6 +34,8 @@ export default function AppLayout() {
       <Stack.Screen name="event-detail/[id]" options={{headerShown: false}}/>
       <Stack.Screen name="event-detail/buyTicket/[id]" options={{headerShown: false}}/>
       <Stack.Screen name="event-detail/buyTicket/success" options={{headerShown: false}}/>
+      <Stack.Screen name="event-detail/upcomingEvents" options={{headerShown: false}}/>
+      <Stack.Screen name="event-detail/popularEvents" options={{headerShown: false}}/>
       <Stack.Screen name="event-detail/deleteEventModal"  options={{
         headerShown: false, 
         presentation: 'containedTransparentModal',
