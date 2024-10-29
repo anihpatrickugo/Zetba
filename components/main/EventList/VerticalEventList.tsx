@@ -1,17 +1,16 @@
 import React, {FC} from 'react'
 import { View, FlatList } from 'react-native'
 import VerticalEventCard from './VerticalEventCard'
+import { EventList } from './types'
 
 
-type EventListProps = {
-    data: any;
-}
 
-const VerticalEventList: FC<EventListProps> = ({data}) => {
+
+const VerticalEventList: FC<EventList> = ({events}) => {
   return (
     <View style={{width: "100%", alignItems: "center", marginVertical: 8}}>
       <FlatList
-        data={data}
+        data={events}
         keyExtractor={(item) => item.toString()}
         showsVerticalScrollIndicator={false}
         style={{ width: "100%"}}

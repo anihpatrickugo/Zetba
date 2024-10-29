@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { View, Image, Pressable, TouchableOpacity } from 'react-native'
 import * as UI from "@/components/common";
 import { primaryColor, grayColor } from "@/components/common/variables";
 import {EvilIcons, AntDesign} from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
+import { Event as EventProp } from './types';
 
-const EventCard = () => {
+const UpcomingEventCard = () => {
   const navigation = useNavigation()
   return (
     <Pressable onPress={() =>  navigation.navigate("event-detail/[id]")} style={{marginVertical: 8, alignItems: "center",
@@ -49,4 +50,4 @@ const EventCard = () => {
   )
 }
 
-export default EventCard
+export default UpcomingEventCard

@@ -6,14 +6,15 @@ import FilterIcon from "@/assets/icons/Filter";
 import { danger, lightGrayColor, primaryColor } from "@/components/common/variables";
 import { TouchableOpacity } from "react-native";
 import CategoryList from "@/components/main/CategoryList";
-import EventList from "@/components/main/EventList";
-import SmallVerticalEventList from "@/components/main/EventList/SmallVerticalEventList";
+import UpcomingEventList from "@/components/main/EventList/UpcomingEventList";
+import PopularEventList from "@/components/main/EventList/PopularEventList";
 import { router } from "expo-router";
 
 
 
 export default function TabOneScreen() {
   const { signOut, session } = useSession();
+
   return (
     <UI.Containner>
       <View style={styles.header}>
@@ -73,10 +74,16 @@ export default function TabOneScreen() {
 
         
         {/* upcoming events */}
-        <EventList title="Upcoming Events" seeMore={()=>router.navigate("/(event)/upcomingEvents")} data={[1,2,3,4,5]}/>
+        <View style={{width: "100%"}}>
+          <UpcomingEventList seeMore={()=>router.navigate("/(event)/upcomingEvents")} events={[1,2,3,4,5]}/>
+        </View>
+
 
         {/* popular events */}
-        <SmallVerticalEventList title="Popular Events" seeMore={()=>router.navigate("/(event)/popularEvents")} data={[1,2,3,4,5]}/>
+        <View style={{width: "100%"}}> 
+
+        <PopularEventList seeMore={()=>router.navigate("/(event)/popularEvents")} events={[1,2,3,4,5]}/>
+        </View>
 
         </ScrollView>
  

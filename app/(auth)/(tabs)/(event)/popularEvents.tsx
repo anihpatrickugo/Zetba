@@ -19,7 +19,7 @@ const popularEvents = () => {
 
        </View>
 
-       <VerticalEventList data={[1, 2, 3]}/>
+       <VerticalEventList events={[1, 2, 3]}/>
     </UI.Containner>
   )
 }

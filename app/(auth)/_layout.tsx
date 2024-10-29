@@ -26,7 +26,7 @@ export default function AppLayout() {
   }
 
   return (
-    <Stack screenOptions={{headerShown: false}}>
+    <Stack screenOptions={{headerShown: false}} initialRouteName='(tabs)'>
       <Stack.Screen name="(tabs)" />
       <Stack.Screen name="notifications" />
       <Stack.Screen name="ticket-detail/[id]" options={{headerShown: false}}/>

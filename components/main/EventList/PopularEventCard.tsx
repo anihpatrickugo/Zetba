@@ -7,13 +7,13 @@ import { useNavigation } from 'expo-router';
 
 
 
-const SmallVerticalEventCard = () => {
+const PopularEventCard = () => {
  
    const navigation = useNavigation()
 
   return (
     <Pressable onPress={() => navigation.navigate("event-detail/[id]", {id: 1})} style={{marginVertical: 8, alignItems: "center",
-        justifyContent: "space-between", width: 150,  height: 132 }}>
+        justifyContent: "space-between", width: 150,  height: 132,  }}>
 
          <View style={{justifyContent: "center", alignItems: "center", width: 26, height: 26, borderRadius: 2.27, backgroundColor: primaryColor, position: "absolute", top: 7, right: 10, zIndex: 10}}>
              <UI.CustomText size="xs" style={{fontSize: 10.84}} bold>15</UI.CustomText>
@@ -53,4 +53,4 @@ const SmallVerticalEventCard = () => {
   )
 }
 
-export default SmallVerticalEventCard
+export default PopularEventCard

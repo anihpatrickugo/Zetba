@@ -2,20 +2,17 @@ import React, {FC} from "react";
 import {View, Image, TouchableOpacity, FlatList } from "react-native";
 import * as UI from "@/components/common";
 import { primaryColor} from "@/components/common/variables";
-import EventCard from "./EventCard";
+import UpcomingEventCard from "./UpcomingEventCard";
+import { EventList } from "./types";
 
 
-type EventListProps = {
-    title: string;
-    seeMore: () => void;
-    data: any;
-}
 
-const EventList: FC<EventListProps> = ({title, seeMore, data}) => {
+
+const UpcomingEventList: FC<EventList> = ({ seeMore, events}) => {
   return (
     <View style={{width: "100%"}}>
     <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
-      <UI.CustomText size="sm" color="white" bold>{title}</UI.CustomText>
+      <UI.CustomText size="sm" color="white" bold>Upcoming Events</UI.CustomText>
 
       <TouchableOpacity onPress={seeMore}>
         <UI.CustomText size="xs" color={primaryColor}>See more &gt;</UI.CustomText>
@@ -24,14 +21,14 @@ const EventList: FC<EventListProps> = ({title, seeMore, data}) => {
 
     <View style={{width: "100%"}}>
       <FlatList
-        data={data}
+        data={events}
         keyExtractor={(item) => item.toString()}
         horizontal
         showsHorizontalScrollIndicator={false}
         style={{ width: "100%"}}
         contentContainerStyle={{gap: 16}}
         renderItem={({item}) => (
-         <EventCard key={item}/>
+         <UpcomingEventCard key={item}/>
         )}
       />
 
@@ -40,4 +37,4 @@ const EventList: FC<EventListProps> = ({title, seeMore, data}) => {
   )
 }
 
-export default EventList
+export default UpcomingEventList
