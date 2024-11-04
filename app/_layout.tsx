@@ -1,8 +1,13 @@
+
+
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { SessionProvider } from "./ctx";
+import { dynamicClient } from "@/dynamicClient";
+
+
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -45,6 +50,8 @@ import { Slot } from "expo-router";
 function RootLayoutNav() {
   return (
     <SessionProvider>
+       <dynamicClient.reactNative.WebView />
+
       <Slot />
     </SessionProvider>
   );

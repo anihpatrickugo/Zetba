@@ -75,7 +75,7 @@ export default function TabOneScreen() {
         
         {/* upcoming events */}
         <View style={{width: "100%"}}>
-          <UpcomingEventList events={[1,2,3,4,5]}/>
+          <UpcomingEventList/>
         </View>
 
 
