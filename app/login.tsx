@@ -6,37 +6,20 @@ import * as UI from '@/components/common';
 import { lightGrayColor, primaryColor } from "@/components/common/variables";
 import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 
-import { dynamicClient } from "@/dynamicClient";
-
-
 
 export default function Login() {
   const { signIn } = useSession();
   const navigation = useNavigation();
 
- 
 
+  
+    const handleLogin = () => {
+      //Adicione sua lógica de login aqui
+      signIn();
+      //Antes de navegar, tenha certeza de que o usuário está autenticado
+      router.replace("/");
+    };
 
-  // const handleLogin = () => {
-  //   //Adicione sua lógica de login aqui
-  //   signIn();
-  //   //Antes de navegar, tenha certeza de que o usuário está autenticado
-  //   router.replace("/");
-  // };
-
-  const handleSendOTP = async () => {
-    await dynamicClient.auth.email.sendOTP('iampatrickugo@gmail.com')
-    // setOtpSent(true)
-    console.log("done")
-  }
-
-
-  const handleLogin = () => {
-    //Adicione sua lógica de login aqui
-    signIn();
-    //Antes de navegar, tenha certeza de que o usuário está autenticado
-    router.replace("/");
-  };
 
   return (
     <UI.Containner>
@@ -70,7 +53,9 @@ export default function Login() {
         <View style={{width: '100%',  justifyContent: 'space-between', alignItems: 'center', gap: 20}}>
           <UI.Button variant="coloured" onPress={()=>router.navigate("/OTPVerification")} style={{width: '100%'}} text="Sign Up"/>
 
-          <UI.Button variant="light" onPress={handleSendOTP} style={{width: '100%'}} text="Connect Wallet"/>
+          {/* <UI.Button variant="light" onPress={handleLogin} style={{width: '100%'}} text="Connect Wallet"/> */}
+
+          <UI.Button variant="light" onPress={handleLogin} style={{width: '100%'}} text='Connect'/>
         </View>
 
         <View style={{width: '100%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 8, marginVertical: 24}}>

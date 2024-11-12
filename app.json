@@ -14,7 +14,9 @@
       "backgroundColor": "#212121"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+
+      "bundleIdentifier": "com.zetba.app"
     },
     "android": {
       "adaptiveIcon": {
