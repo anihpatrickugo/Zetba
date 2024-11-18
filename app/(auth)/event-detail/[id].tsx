@@ -1,3 +1,4 @@
+import { useLayoutEffect, useState } from 'react';
 
 import { useLocalSearchParams } from 'expo-router';
 import {  View, StyleSheet, TouchableOpacity, Image, ScrollView, Dimensions} from "react-native";
@@ -8,6 +9,8 @@ import PartyPopperIcon from "@/assets/icons/PartyPopper"
 import MapView, {Marker}  from 'react-native-maps'
 import {  lightGrayColor, grayColor, primaryColor, primaryLightColor} from "@/components/common/variables";
 import { LinearGradient } from 'expo-linear-gradient';
+import { getEventDetail } from '@/api/events';
+import { parse } from '@babel/core';
 
 
 const {width} = Dimensions.get('window')
@@ -15,10 +18,27 @@ const {width} = Dimensions.get('window')
 
 export default function notifications() {
 
-  const navigation = useNavigation();
-  const { slug } = useLocalSearchParams();
+  const [event, setEvent] = useState<any>(null);
 
+  const navigation = useNavigation();
+  const { id } = useLocalSearchParams();
+  const date = new  Date(event?.date)
+  const month = date.toLocaleString('default', { month: 'short' });
+  const day = date.toLocaleString('default', { weekday: 'long' });
   
+  
+
+  useLayoutEffect(()=>{
+    const fetchEventDetail = async()=>{
+      const data = await getEventDetail(parseInt(id as string))
+      setEvent(data)
+    
+    }
+
+    fetchEventDetail()
+  }, [id])
+
+  if (event === null) return <UI.CustomText size='lg'>Loading</UI.CustomText>
 
   return (
       <ScrollView style={styles.containner} >
@@ -26,7 +46,7 @@ export default function notifications() {
          <UI.Containner noGradient>
 
         <View style={styles.image}>
-           <Image source={require("@/assets/images/dynamic/concert2.png")} 
+           <Image source={{uri: event.photo}} 
            resizeMode="cover" style={{width: "100%", height: "100%"}}/>
 
              <LinearGradient
@@ -50,16 +70,16 @@ export default function notifications() {
        <View style={styles.details}>
         <View style={{flexDirection: "row", alignItems: "center", gap: 4}}>
         <PartyPopperIcon width={18} height={18} color="white"/>
-        <UI.CustomText size='sm' color='white'>Festivals</UI.CustomText>
+        <UI.CustomText size='sm' color='white'>{event.category}</UI.CustomText>
         </View>
         
         {/* name and price */}
         <View style={{width: "100%", flexDirection: "row", justifyContent: "space-between" }}>
-          <UI.CustomText size="md" color="white" bold style={{width: 165}}>Barbados Music Festival</UI.CustomText>
+          <UI.CustomText size="md" color="white" bold style={{width: 165}}>{event.title}</UI.CustomText>
 
           <View style={{width: 80, height: 30, justifyContent: "center", 
             alignItems: "center", backgroundColor: primaryColor, borderRadius: 4}}>
-             <UI.CustomText size="sm" color="black">$80.50</UI.CustomText>
+             <UI.CustomText size="sm" color="black">${event.price}</UI.CustomText>
           </View>
         </View>
 
@@ -67,10 +87,10 @@ export default function notifications() {
         <View style={{flexDirection: "row", alignItems: "center", gap: 4, marginVertical: 8}}>
 
                  <View style={{ flexDirection: "row", alignItems: 'center', marginLeft: 6}}>
-                     <Image source={require("@/assets/images/dynamic/pro.jpeg")} style={styles.attendantImage}/>
-                     <Image source={require("@/assets/images/dynamic/pro.jpeg")} style={styles.attendantImage}/>
-                     <Image source={require("@/assets/images/dynamic/pro.jpeg")} style={styles.attendantImage}/>
-                     <Image source={require("@/assets/images/dynamic/pro.jpeg")} style={styles.attendantImage}/>
+                 {/* {event?.attendants.map((attendant: any, index: any) => (
+                               <Image key={index} source={require("@/assets/images/dynamic/pro.jpeg")} style={styles.attendantImage}/>
+                  ) )} */}
+                    
                  </View>
 
                 <UI.CustomText size="xs" color="white">+20k Attendant</UI.CustomText>
@@ -78,9 +98,7 @@ export default function notifications() {
 
         <UI.CustomText size="sm" color="white" bold style={{fontSize: 16}}>Description</UI.CustomText>
         <UI.CustomText size="xs" color="white">
-          Get ready for Barbados music summer festival like never before. 
-          Immerse yourself in a world of rhythm, harmony, 
-          and unforgettable experience as we .....
+        {/* {event.description} */}
           <UI.CustomText size="xs" color={primaryColor}> Read More.</UI.CustomText>
         </UI.CustomText>
 
@@ -98,8 +116,8 @@ export default function notifications() {
               </View>
 
               <View>
-                <UI.CustomText size='xs' color={lightGrayColor} style={{fontSize: 10}}>Bridgetown</UI.CustomText>
-                <UI.CustomText size='xs' color="white">Barbados</UI.CustomText>
+                <UI.CustomText size='xs' color={lightGrayColor} style={{fontSize: 10}}>{event.location_name}</UI.CustomText>
+                <UI.CustomText size='xs' color="white">{event.location_name}</UI.CustomText>
               </View>
 
             </View>
@@ -115,8 +133,8 @@ export default function notifications() {
               </View>
 
               <View>
-                <UI.CustomText size='xs' color={lightGrayColor} style={{fontSize: 10}}>Aug 15 - Aug 30</UI.CustomText>
-                <UI.CustomText size='xs' color="white">08:00 - 20:00</UI.CustomText>
+                <UI.CustomText size='xs' color={lightGrayColor} style={{fontSize: 10}}>{day}, {month} {date.getDate()} {date.getFullYear()}</UI.CustomText>
+                <UI.CustomText size='xs' color="white">{event.time}</UI.CustomText>
               </View>
 
             </View>
@@ -132,8 +150,8 @@ export default function notifications() {
                <MapView 
                style={styles.map} 
                initialRegion={{
-                latitude: 9.072264,
-                longitude: 7.491302,
+                latitude: event.location_latitude,
+                longitude: event.location_longitude,
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
               }}
@@ -156,7 +174,7 @@ export default function notifications() {
        </View> 
          {/*  button */}
 
-         <UI.Button text='Buy Ticket' variant='coloured' onPress={()=>navigation.navigate("event-detail/buyTicket/[id]")}/>
+         <UI.Button text='Buy Ticket' variant='coloured' onPress={()=>navigation.navigate("event-detail/buyTicket/[id]", {id: 1})}/>
        </UI.Containner> 
     </ScrollView>
   );

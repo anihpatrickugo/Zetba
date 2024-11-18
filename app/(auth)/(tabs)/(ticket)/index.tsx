@@ -1,13 +1,37 @@
+import { useState, useLayoutEffect } from "react";
 import {  View, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import * as UI from '@/components/common';
-import TicketList from "@/components/main/TicketList";
+import MyTicketList from "@/components/main/MyTicketList";
+import { getAllTickets } from "@/api/tickets";
 
 
 
 export default function MyTickets() {
 
   const navigation = useNavigation();
+
+  const [tickets, setTickets] = useState<any>(null)
+
+
+
+    useLayoutEffect(()=>{
+  
+      const fetchEvents = async()=>{
+        try{
+            const data = await getAllTickets()
+            setTickets(data.results)
+           
+
+          }catch(e){
+            console.log(e)
+          }
+
+        }
+  
+      fetchEvents()
+  
+    }, [])
 
   
 
@@ -25,7 +49,7 @@ export default function MyTickets() {
 
 
       {/* ticket list */}
-      <TicketList pathRoute="ticket-detail/[id]" />
+      <MyTicketList pathRoute="ticket-detail/[id]" data={tickets} />
 
     </UI.Containner>
   );

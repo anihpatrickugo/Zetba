@@ -4,10 +4,18 @@ import * as UI from '@/components/common';
 import Feather from '@expo/vector-icons/Feather';
 import { grayColor, lightGrayColor } from '@/components/common/variables';
 import { useNavigation } from 'expo-router';
+import * as SecureStore from 'expo-secure-store'
 
 export default function Modal() {
     const { signOut, session } = useSession();
     const navigation = useNavigation();
+
+    const logout = async()=>{
+      
+      await SecureStore.deleteItemAsync('accessToken');
+      await SecureStore.deleteItemAsync('refreshToken');
+      signOut()
+    }
 
   return (
     <View style={styles.container}>
@@ -30,7 +38,7 @@ export default function Modal() {
                     <UI.Button variant='dark' text="Cancel" onPress={() => navigation.goBack()} />
                  </View>
                  <View style={{width: 100}}>
-                    <UI.Button variant='coloured' text="Continue" onPress={signOut} />
+                    <UI.Button variant='coloured' text="Continue" onPress={logout} />
                  </View>
             </View>
           

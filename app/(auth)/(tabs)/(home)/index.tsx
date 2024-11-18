@@ -15,6 +15,8 @@ import { router } from "expo-router";
 export default function TabOneScreen() {
   const { signOut, session } = useSession();
 
+  
+
   return (
     <UI.Containner>
       <View style={styles.header}>
@@ -53,7 +55,7 @@ export default function TabOneScreen() {
          
          <View style={{ flexDirection: "row", flex: 1}}>
             <UI.CustomTextInput placeholder="Search" icon={<TouchableOpacity>
-               <Feather name="search" size={20} color="white" />
+               <Feather name="search" size={20} color={primaryColor} />
              </TouchableOpacity>} />
          </View>
 

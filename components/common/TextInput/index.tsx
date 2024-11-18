@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { StyleSheet, TextInput, View, TextInputProps } from 'react-native'
-import { primaryLightColor } from "@/components/common/variables";
+import { primaryColor, primaryLightColor } from "@/components/common/variables";
 
 
 
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',  
         borderRadius: 8, 
         borderWidth: 1,
-        borderColor: 'white'
+        borderColor: primaryColor
      },
 
     inputField: {

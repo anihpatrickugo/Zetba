@@ -1,68 +1,95 @@
-import { View, StyleSheet } from "react-native";
-import { useSession } from "./ctx"
+import { View, StyleSheet, Pressable } from "react-native";
+import { useSession, } from "./ctx"
 import { router } from "expo-router";
 import { useNavigation } from "@react-navigation/native";
 import * as UI from '@/components/common';
 import { lightGrayColor, primaryColor } from "@/components/common/variables";
-import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+import GoogleIcon from '@/assets/icons/Google'
+import { getJWT } from "@/api/auth";
+import { useState } from "react";
+import * as SecureStore from "expo-secure-store";
 
 
 export default function Login() {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
   const { signIn } = useSession();
   const navigation = useNavigation();
 
+    const handleLogin = async () => {
+      try{
+        const data = await getJWT(username, password)
+        const accessToken = data.access
+        const refreshToken = data.refresh
+         //Adicione sua lógica de login aqui
+         await SecureStore.setItemAsync('accessToken', accessToken)
+         await SecureStore.setItemAsync('refreshToken', refreshToken)
+          signIn(accessToken);
+        //Antes de navegar, tenha certeza de que o usuário está autenticado
+         router.replace("/");
+        
 
-  
-    const handleLogin = () => {
-      //Adicione sua lógica de login aqui
-      signIn();
-      //Antes de navegar, tenha certeza de que o usuário está autenticado
-      router.replace("/");
+      }catch(e){
+        console.log('error', e)
+      }
+
     };
 
 
   return (
     <UI.Containner>
+     
 
         <View style={{width: '100%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: 26 }}>
           <UI.BackButton  navigation={navigation} screenName="hello" />
        </View>
        
        <View style={{width: "100%", marginVertical: 20}}>
-          <UI.CustomText size="lg" bold color="white" style={{marginBottom: 20}}>Sign Up 👋</UI.CustomText>
+          <UI.CustomText size="lg" bold color="white" style={{marginBottom: 20}}>Sign In 👋</UI.CustomText>
           <UI.CustomText size="sm" color="white">
-            Please, insert your email address or connect an existing wallet for your a account.</UI.CustomText>
+            Please, insert your username and password.</UI.CustomText>
        </View>
 
        <UI.CustomTextInput 
-           placeholder="your@example.com" 
-           keyboardType="email-address" 
-           icon={(<AntDesign name="mail" size={24} color="white" />)}/>
+           placeholder="Enter Username" 
+           keyboardType="default" 
+           value={username}
+           onChangeText={(e)=>setUsername(e)}
+           icon={(<AntDesign name="user" size={24} color="white" />)}/>
+
+       <View style={{marginVertical: 10}}/>
+
+       <UI.CustomTextInput 
+           placeholder="Enter Password" 
+           keyboardType="default" 
+           secureTextEntry
+           value={password}
+           onChangeText={(e)=>setPassword(e)}
+           icon={(<AntDesign name="lock" size={24} color="white" />)}/>
 
 
-
-        <View style={{width: '100%', flexDirection: "row", marginVertical: 30, gap: 8,  alignItems: 'flex-start'}}>
-          <MaterialCommunityIcons name="shield-check-outline" size={16} color={lightGrayColor} />
-          <UI.CustomText size="xs" color={lightGrayColor}>By signing up, you agree to the 
-            <UI.CustomText style={{textDecorationLine: "underline"}} size="xs" color={lightGrayColor}> Terms of Service</UI.CustomText> and
-            <UI.CustomText style={{textDecorationLine: "underline"}} size="xs" color={lightGrayColor}> Privacy Policy</UI.CustomText>
-             </UI.CustomText>
-
-        </View>
-
-        <View style={{width: '100%',  justifyContent: 'space-between', alignItems: 'center', gap: 20}}>
-          <UI.Button variant="coloured" onPress={()=>router.navigate("/OTPVerification")} style={{width: '100%'}} text="Sign Up"/>
-
-          {/* <UI.Button variant="light" onPress={handleLogin} style={{width: '100%'}} text="Connect Wallet"/> */}
-
-          <UI.Button variant="light" onPress={handleLogin} style={{width: '100%'}} text='Connect'/>
-        </View>
 
         <View style={{width: '100%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 8, marginVertical: 24}}>
-          <UI.CustomText size="sm" color={lightGrayColor}>Already have an account?</UI.CustomText>
-          <UI.CustomText size="sm" color={primaryColor} style={{textDecorationLine: "underline"}} >Sign In</UI.CustomText>
+          <UI.CustomText size="sm" color={lightGrayColor}>Don't have an account?</UI.CustomText>
+          <UI.CustomText size="sm" color={primaryColor} style={{textDecorationLine: "underline"}} >Sign Up</UI.CustomText>
         </View>
-          
+
+
+        <View style={{width: '100%', marginVertical: 16,  justifyContent: 'space-between', alignItems: 'center', gap: 10}}>
+          <UI.Button variant="coloured" onPress={handleLogin} style={{width: '100%'}} text="Sign In"/>
+
+          <UI.CustomText size="sm" color={lightGrayColor}>or</UI.CustomText>
+
+          <UI.Button variant="light" onPress={()=>{}} style={{width: '100%'}} 
+          icon={ <GoogleIcon width={24} height={24} color='white' />}
+          // icon={(<AntDesign name="lock" size={24} color="white" />)}
+          text='Continue With Google'/>
+
+          <UI.CustomText size="sm" color={primaryColor} style={{textDecorationLine: "underline"}} >Forgot Pasword?</UI.CustomText>
+        </View>
+
 
        
     </UI.Containner>

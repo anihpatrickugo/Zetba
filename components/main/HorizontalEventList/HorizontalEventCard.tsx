@@ -3,33 +3,34 @@ import { Image, TouchableOpacity, StyleSheet, View} from 'react-native'
 import * as UI from '@/components/common/index'
 import { lightGrayColor, lightWhiteColor, primaryColor } from "@/components/common/variables";
 import { EvilIcons, Feather, AntDesign } from '@expo/vector-icons';
-import { router } from 'expo-router';
+import { useNavigation } from 'expo-router';
 
 type Props = {
-  obj: number
-  pathRoute: any,
+  obj: any
   deleteIcon?: boolean
 }
 
-const TicketCard: FC<Props> = ({obj, pathRoute, deleteIcon}) => {
+const HorizontalEventCard: FC<Props> = ({obj, deleteIcon}) => {
+  
+  const navigation = useNavigation();
 
    
   const onDelete = () => {
-    router.navigate({pathname: "event-detail/deleteEventModal", params: {id: obj}})
+    navigation.navigate("event-detail/deleteEventModal", {id: obj.item.id})
   }
   return (
-    <TouchableOpacity style={styles.ticket} onPress={()=>router.navigate({pathname: pathRoute, params: {id: obj}})}>
+    <TouchableOpacity style={styles.ticket} onPress={()=>navigation.navigate( 'event-detail/[id]', {id: obj.item.id})}>
     <Image 
-    source={require("@/assets/images/dynamic/concert.png")} 
+    source={{uri: obj.item.photo}} 
     style={{width: 63, height: 63, borderRadius: 4}} resizeMode="cover"/>
 
     <View style={styles.detail}>
 
-        <UI.CustomText size='xs' color='white' bold>Barbados Music Festival</UI.CustomText>
+        <UI.CustomText size='xs' color='white' bold>{obj.item.title}</UI.CustomText>
 
         <View style={{ flexDirection: "row", gap: 4, alignItems: 'center', marginLeft: -3}}>
               <EvilIcons name="location" size={16} color="white" />
-              <UI.CustomText size="xs" color="white" style={{fontSize: 10}}>Barbados</UI.CustomText>
+              <UI.CustomText size="xs" color="white" style={{fontSize: 10}}>{obj.item.location_name}</UI.CustomText>
         </View>
 
 
@@ -85,4 +86,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default TicketCard
+export default HorizontalEventCard

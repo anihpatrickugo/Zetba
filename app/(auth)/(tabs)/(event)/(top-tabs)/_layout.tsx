@@ -25,8 +25,8 @@ export const MaterialTopTabs = withLayoutContext<
 export default function Layout() {
   return (
      <MaterialTopTabs tabBar={props => <MyTabBar {...props} />}>
-        <MaterialTopTabs.Screen name="findEvents" options={{title: "Find Events"}}/>
         <MaterialTopTabs.Screen name="myEvents"  options={{title: "My Events"}}/>
+        <MaterialTopTabs.Screen name="findEvents" options={{title: "Find Events"}}/>
      </MaterialTopTabs>
   );
 }
