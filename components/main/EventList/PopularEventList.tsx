@@ -1,34 +1,43 @@
-import {useState, useLayoutEffect} from 'react'
+import {useState, useEffect} from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import PopularEventCard from './PopularEventCard'
 import { primaryColor } from '@/components/common/variables'
 import { router } from 'expo-router'
 import * as UI from "@/components/common";
 import { getPopularEvents } from '@/api/events'
+import PopularLoading from '@/components/LoadingSkeletons/PopularLoading'
 
 
 
 
 const PopularEventList = () => {
-  
-  const [events, setEvents] = useState<any>(null)
+   const [loading, setLoading] = useState<boolean>(true)
+   const [events, setEvents] = useState<any>(null)
 
 
 
-  useLayoutEffect(()=>{
+  useEffect(()=>{
 
     const fetchEvents = async()=>{
-      const data = await getPopularEvents()
-      setEvents(data)
+      setLoading(true)
+      try{
+        const data = await getPopularEvents()
+        setEvents(data.results)
+      }catch(e: any){
+        console.log(e)
+      }finally{
+        setLoading(false)
+      }
     }
 
     fetchEvents()
 
   }, [])
 
-  if (events === null) return <UI.CustomText size="lg">Loading</UI.CustomText>
 
-  if (events?.results.length === 0) return <UI.CustomText size="lg">No upcoming events</UI.CustomText>
+  if (loading) return <PopularLoading/>
+
+  if (events?.length === 0) return <UI.CustomText size="lg">No popular event</UI.CustomText>
 
   return (
     <View style={{width: "100%"}}>
@@ -42,13 +51,13 @@ const PopularEventList = () => {
 
        <View style={{width: "100%", marginVertical: 8, flexDirection: "row", justifyContent:"space-between", flexWrap: 'wrap'}}>
            {/* to avoid virtualized list warning, i used a map instead of a flatlist */}
-            {events.results.map((item => (
+            {events?.map(((item: any) => (
               <PopularEventCard key={item.id} item={item} />
             )))}
 
       </View>
   </View>
   )
-}
 
+}
 export default PopularEventList

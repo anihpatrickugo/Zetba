@@ -7,18 +7,16 @@ import { router } from 'expo-router';
 
 type Props = {
   obj: any
-  pathRoute: any,
-  deleteIcon?: boolean
 }
 
-const MyTicketCard: FC<Props> = ({obj, pathRoute, deleteIcon}) => {
+const MyTicketCard: FC<Props> = ({obj}) => {
 
 
   const onDelete = () => {
     router.navigate({pathname: "event-detail/deleteEventModal", params: {id: obj.item.id}})
   }
   return (
-    <TouchableOpacity style={styles.ticket} onPress={()=>router.navigate({pathname: pathRoute, params: {id: obj.item.id}})}>
+    <TouchableOpacity style={styles.ticket} onPress={()=>router.navigate({pathname: "/ticket-detail/[id]", params: {id: obj.item.id}})}>
     <Image 
     source={{uri: obj.item.event.photo}} 
     style={{width: 63, height: 63, borderRadius: 4}} resizeMode="cover"/>
@@ -39,15 +37,7 @@ const MyTicketCard: FC<Props> = ({obj, pathRoute, deleteIcon}) => {
         </View>
 
     </View>
-
-     { deleteIcon ? (
-         <TouchableOpacity style={styles.deleteIcon} onPress={onDelete}>
-           <AntDesign name="delete" size={14} color="red" />
-         </TouchableOpacity>
-     ) : (
-
-       <Feather name="arrow-right" size={24} color={primaryColor} />
-     )}
+    <Feather name="arrow-right" size={24} color={primaryColor} />
 </TouchableOpacity>
   )
 }

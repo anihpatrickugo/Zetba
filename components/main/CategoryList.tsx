@@ -1,23 +1,34 @@
-import {useState, useLayoutEffect} from 'react'
-import { FlatList, Image, TouchableOpacity, View } from 'react-native'
+import {useState, useEffect} from 'react'
+import { FlatList, TouchableOpacity, View } from 'react-native'
 import * as UI from '@/components/common'
 import { getCategories } from '@/api/events'
 import { primaryColor } from '../common/variables'
+import CategoryLoading from '../LoadingSkeletons/CategoryLoading'
 
 const CategoryList = () => {
-  
-  const [categories, setCategories] = useState<any>([])
+  const [loading, setLoading] = useState(true)
+  const [categories, setCategories] = useState<any>(null)
 
-  useLayoutEffect(()=>{
+  useEffect(()=>{
 
     const fetchCategories = async()=>{
-      const data = await getCategories()
-      setCategories(data.results)
+      setLoading
+      try{
+        const data = await getCategories()
+        setCategories(data.results)
+      }catch(e: any){
+        console.log(e)
+      }finally{
+        setLoading(false)
+      }
     }
 
     fetchCategories()
 
   }, [])
+
+
+  if (loading) return <CategoryLoading />
 
   return (
     <View style={{width: "100%"}}>

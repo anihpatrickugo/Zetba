@@ -1,35 +1,45 @@
-import {useState, useLayoutEffect} from "react";
+import {useState, useEffect} from "react";
 import {View, TouchableOpacity, FlatList } from "react-native";
 import * as UI from "@/components/common";
 import { primaryColor} from "@/components/common/variables";
 import UpcomingEventCard from "./UpcomingEventCard";
 import { router } from "expo-router";
 import { getUpcommingEvents } from "@/api/events";
+import UpcomingLoading from "@/components/LoadingSkeletons/UpcomingLoading";
 
 
 
 
 
 const UpcomingEventList = () => {
-  
+  const [loading, setLoading] = useState(true)
   const [events, setEvents] = useState<any>(null)
 
 
 
-  useLayoutEffect(()=>{
+  useEffect(()=>{
 
     const fetchEvents = async()=>{
-      const data = await getUpcommingEvents()
-      setEvents(data)
+      setLoading(true)
+      try {
+        const res = await getUpcommingEvents()
+        setEvents(res.results)
+        
+      } catch (error: any) {
+        console.log(error.message)
+      }finally{ 
+        setLoading(false)
+      }
     }
 
     fetchEvents()
 
   }, [])
 
-  if (events === null) return <UI.CustomText size="lg">Loading</UI.CustomText>
+  if (loading) return <UpcomingLoading />
 
-  // if (events?.results.length === 0) return <UI.CustomText size="lg">No upcoming events</UI.CustomText>
+
+  if (events?.length === 0) return <UI.CustomText size="lg">No upcoming event</UI.CustomText>
 
   return (
     <View style={{width: "100%"}}>
@@ -43,7 +53,7 @@ const UpcomingEventList = () => {
 
     <View style={{width: "100%"}}>
       <FlatList
-        data={events.results}
+        data={events}
         keyExtractor={(item) => item.id.toString()}
         horizontal
         showsHorizontalScrollIndicator={false}

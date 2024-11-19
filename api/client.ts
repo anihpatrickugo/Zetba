@@ -55,8 +55,6 @@ client.interceptors.response.use(
           
           await SecureStore.setItemAsync('accessToken', access);
           
-
-          console.log("updated successfully")
           // Update the authorization header with the new access token.
           client.defaults.headers.common['Authorization'] = `Bearer ${access}`;
           return client(originalRequest); // Retry the original request with the new access token.

@@ -5,7 +5,7 @@ export const getJWT = async(username: string, password: string)=> {
       const res = await client.post('/user/auth/token/', {username, password})
       return res.data
   
-    }catch(e){
-      return e
+    }catch(e: any){
+      return e.message.toString()
     }
   }

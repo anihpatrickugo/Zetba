@@ -1,39 +1,41 @@
-import {useState, useLayoutEffect} from 'react';
+import {useState, useEffect} from 'react';
 import { View } from 'react-native';
 import * as UI from "@/components/common/index";
 import HorizontalEventList from '@/components/main/HorizontalEventList';
 import { getMyEvents } from '@/api/events';
 
+
 const Event: React.FC = () => {
-    const [events, setEvents] = useState<any>(null)
+  const [loading, setLoading] = useState(true)
+  const [events, setEvents] = useState<any>(null)
 
 
+  useEffect(()=>{
+  
+    const fetchEvents = async()=>{
+      setLoading(true)
+      try {
+        const res = await getMyEvents()
+        setEvents(res.results)
+        
+      } catch (error: any) {
+        console.log(error.message)
+      }finally{ 
+        setLoading(false)
+      }
+    }
 
-    useLayoutEffect(()=>{
-  
-      const fetchEvents = async()=>{
-        try{
-            const data = await getMyEvents()
-            setEvents(data.results)
+    fetchEvents()
 
-          }catch(e){
-            console.log(e)
-          }
-
-        }
+  }, [])
+   
   
-      fetchEvents()
-  
-    }, [])
-  
-    // if (events === null) return <UI.CustomText size="lg">Loading</UI.CustomText>
-  
-    // if (events?.results.length === 0) return <UI.CustomText size="lg">No upcoming events</UI.CustomText>
+ 
 
     return (
         <UI.Containner>
             <View style={{ marginTop: 80}}>
-               <HorizontalEventList deleteIcon data={events}/>
+               <HorizontalEventList deleteIcon data={events} loading={loading}/>
             </View>
         </UI.Containner>
     );

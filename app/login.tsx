@@ -12,6 +12,10 @@ import * as SecureStore from "expo-secure-store";
 
 
 export default function Login() {
+  const [error, setError] = useState<string|null>(null)
+  const [loading, setLoading] = useState(false)
+
+  //  form states
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -19,6 +23,8 @@ export default function Login() {
   const navigation = useNavigation();
 
     const handleLogin = async () => {
+      setLoading(true)
+      setError(null)
       try{
         const data = await getJWT(username, password)
         const accessToken = data.access
@@ -31,16 +37,26 @@ export default function Login() {
          router.replace("/");
         
 
-      }catch(e){
-        console.log('error', e)
+      }catch(e: any){
+        console.log('error', e.message.toString())
+        setError(e.message.toString())
+      }finally{
+        setLoading(false)
       }
 
     };
-
+  
+  if(loading){
+    return (
+      
+        <UI.Loading text='loading' />
+      
+    )
+  }  
 
   return (
     <UI.Containner>
-     
+        
 
         <View style={{width: '100%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: 26 }}>
           <UI.BackButton  navigation={navigation} screenName="hello" />

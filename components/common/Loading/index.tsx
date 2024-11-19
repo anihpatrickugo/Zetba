@@ -1,33 +1,29 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Text, Modal, StyleSheet, View, Dimensions, ActivityIndicator} from 'react-native';
+import { grayColor, lightGrayColor, primaryColor } from '../variables';
 const {width, height} = Dimensions.get("screen")
 
-const Loading = () => {
+type Props = {
+  transparent?: boolean,
+  text?: string
+}
+
+const Loading: FC<Props> = ({transparent, text}) => {
  
 
   return (
-    <>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={true}
-        >
-        <View style={styles.containner}>
+    <View style={styles.containner}>
+      <ActivityIndicator size="large" color={primaryColor} /> 
 
-          <View style={styles.modalView}>
-            <ActivityIndicator size="large" color="#E1AE3C" /> 
-            <Text style={styles.loadingText}>Loading...</Text>
+      {text && <Text style={styles.loadingText}>{text}</Text>}
 
-          </View>
-
-        </View>
-      </Modal>
-    </>
+   </View>
   );
 };
 
 const styles = StyleSheet.create({
   containner: {
+    backgroundColor: grayColor,
     position: 'absolute',
     width: width,
     height: height,
@@ -39,32 +35,13 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
 
-  modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    width: 150,
-    height: 150,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 12,
-    borderRadius: 30,
-
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 20,
-  },
 
   loadingText: {
-    fontSize: 14,
-    fontWeight: "700",
-    letterSpacing: 2,
+    color: lightGrayColor,
+    fontSize: 16,
+    fontWeight: "500",
     marginTop: 16,
-    fontFamily: 'Roboto_500Medium'
+    fontFamily: 'Inter'
   }
 });
 
